@@ -34,8 +34,12 @@ namespace Umbraco13BlogSite.App_Code.ViewComponents
                 headerView.Title = context?.Value<string>("title");
                 headerView.SubTitle = context?.Value<string>("subTitle");
                 headerView.Imageurl = context?.Value<IPublishedContent>("pageBanner")?.Url();
-                    
-                
+                headerView.IsBlog = context?.IsDocumentType("blog");
+                headerView.CreatedBy = context?.CreatorName();
+                headerView.AuthorUrl = context?.Value<IPublishedContent>("authorPageUrl")?.Url();
+                headerView.CreatedDate = context?.CreateDate.ToString("D");
+
+
             }
             catch (Exception ex)
             {

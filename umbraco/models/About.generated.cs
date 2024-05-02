@@ -74,6 +74,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Description => global::Umbraco.Cms.Web.Common.PublishedModels.Page.GetDescription(this, _publishedValueFallback);
 
 		///<summary>
+		/// Display on Navbar
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.2+79d241a")]
+		[ImplementPropertyType("displayOnNavbar")]
+		public virtual bool DisplayOnNavbar => global::Umbraco.Cms.Web.Common.PublishedModels.Page.GetDisplayOnNavbar(this, _publishedValueFallback);
+
+		///<summary>
 		/// Page Banner
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.2+79d241a")]

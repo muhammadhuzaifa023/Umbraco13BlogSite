@@ -1,0 +1,48 @@
+﻿﻿@using Umbraco13BlogSite.App_Code.Models.Pagination;
+@using Umbraco13BlogSite.App_Code.Models.ViewComponentModels
+@model PaginatedList<BlogsView>
+@{
+    var query = Context?.Request?.Query["page"].ToString();
+    var pageNumber = string.IsNullOrWhiteSpace(query) ? 1 : Convert.ToInt32(query);
+    var prevDisabled = !Model.HasPreviousPage ? "d-none" : ""; // If we have not any previous page then It give me Empty and not showing on view 
+    var nextDisabled = !Model.HasNextPage ? "d-none" : "";    // Similarly If we have not any Next page then It give me only Previuos Button on View 
+}
+<!-- Main Content-->
+@* <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7"> *@
+            <!-- Post preview-->
+            @foreach (var item in Model ?? new List<BlogsView>())
+            {
+                <div class="post-preview">
+                    <a href="@item?.BlogUrl">
+                        <h2 class="post-title">@item?.Title</h2>
+                        <h3 class="post-subtitle">@item?.SubTitle</h3>
+                    </a>
+                    <p class="post-meta">
+                        Posted by
+                        <a href="@item?.AuthorUrl">@item?.CreatedBy</a>
+                        on @item?.CreatedDate
+                    </p>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+            }
+           
+           
+            <!-- Pager-->
+            <div class="d-flex justify-content-between mb-4">
+                <a class="btn btn-primary text-uppercase @prevDisabled"  href="/home?page=@(pageNumber - 1)">
+                    <span class="fas fa-arrow-alt-circle-left"></span>
+                    Previous Posts
+                </a>
+
+                <a class="btn btn-primary text-uppercase @nextDisabled" href="/home?page=@(pageNumber + 1)">
+                    Older Posts
+                    <span class="fas fa-arrow-alt-circle-right"></span>
+                    
+                </a>
+            </div>
+        @* </div>
+    </div>
+</div> *@
